@@ -24,6 +24,7 @@ class RegistrationPage:
     def open(self):
         browser.open('/automation-practice-form')
         browser.should(have.title_containing('DEMOQA'))
+        browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
 
     def type_first_name(self, value):
         self.first_name.type(value)
