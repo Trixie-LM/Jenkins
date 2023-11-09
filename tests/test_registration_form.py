@@ -23,7 +23,7 @@ def test_registration_form(setup_browser):
         registration_page.download_picture(str(Path(__file__).parent.joinpath(f'image/Trixie.jpeg')))
         registration_page.type_address('Sugar Palace, a candy store in Ponyville.')
         registration_page.type_state('NCR')
-        registration_page.type_city('Noida')
+        registration_page.type_city('Delhi')
         registration_page.click_submit()
 
     with allure.step("Check form results"):
@@ -37,5 +37,5 @@ def test_registration_form(setup_browser):
             'Music',
             'Trixie.jpeg',
             'Sugar Palace, a candy store in Ponyville.',
-            'NCR Noida'
+            'NCR Delhi'
         )

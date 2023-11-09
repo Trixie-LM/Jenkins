@@ -24,6 +24,7 @@ class RegistrationPage:
     def open(self):
         browser.open('/automation-practice-form')
         browser.should(have.title_containing('DEMOQA'))
+        browser.config.driver.maximize_window()
         browser.all('[id^=google_ads][id$=container__]').perform(command.js.remove)
 
     def type_first_name(self, value):
@@ -68,15 +69,16 @@ class RegistrationPage:
     def type_state(self, value):
         self.state.perform(command.js.scroll_into_view)
         self.state.click()
-        browser.all('[id^=react-select][id*=option]').element_by(
+        browser.with_(timeout=10).all('[id^=react-select][id*=option]').element_by(
             have.exact_text(value)).click()
 
     def type_city(self, value):
         browser.element('#city').click()
-        browser.all('[id^=react-select][id*=option]').element_by(
+        browser.with_(timeout=10).all('[id^=react-select][id*=option]').element_by(
             have.exact_text(value)).click()
 
     def click_submit(self):
+        self.submit.perform(command.js.scroll_into_view)
         self.submit.click()
 
     def registered_user_data_should(self, full_name, email, gender, number,
